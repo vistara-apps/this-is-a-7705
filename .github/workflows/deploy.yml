@@ -27,6 +27,10 @@ jobs:
       env:
         NODE_OPTIONS: --max-old-space-size=4096
         
+    - name: Skip Vercel deployment (secrets not configured)
+      if: secrets.VERCEL_TOKEN == ''
+      run: echo "⚠️ Vercel deployment skipped - VERCEL_TOKEN secret not configured. To enable deployment, add VERCEL_TOKEN, VERCEL_ORG_ID, and VERCEL_PROJECT_ID secrets to repository settings."
+        
     - name: Deploy to Vercel (Production)
       if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') && secrets.VERCEL_TOKEN != ''
       uses: amondnet/vercel-action@v25
