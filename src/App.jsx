@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { Toaster } from 'react-hot-toast'
+import { AuthProvider } from './hooks/useAuth.jsx'
 import { Header } from './components/Header'
 import { StateSelector } from './components/StateSelector'
 import { Dashboard } from './components/Dashboard'
@@ -51,77 +53,92 @@ function App() {
   const currentStateData = stateRightsData[selectedState]
 
   return (
-    <div className={`min-h-screen transition-colors duration-200 ${
-      isDark ? 'bg-dark-bg text-dark-text' : 'bg-bg text-text-primary'
-    }`}>
-      <div className="max-w-screen-sm mx-auto px-5 min-h-screen flex flex-col">
-        {currentView !== 'onboarding' && (
-          <Header 
-            isDark={isDark}
-            setIsDark={setIsDark}
-            currentView={currentView}
-            setCurrentView={setCurrentView}
-            selectedState={selectedState}
-            user={user}
-            onUpgrade={handleUpgrade}
-          />
-        )}
-
-        <main className="flex-1 pb-6">
-          {currentView === 'onboarding' && (
-            <StateSelector onStateSelect={handleStateSelect} />
-          )}
-
-          {currentView === 'dashboard' && (
-            <Dashboard 
-              selectedState={selectedState}
+    <AuthProvider>
+      <div className={`min-h-screen transition-colors duration-200 ${
+        isDark ? 'bg-dark-bg text-dark-text' : 'bg-bg text-text-primary'
+      }`}>
+        <div className="max-w-screen-sm mx-auto px-5 min-h-screen flex flex-col">
+          {currentView !== 'onboarding' && (
+            <Header 
+              isDark={isDark}
+              setIsDark={setIsDark}
+              currentView={currentView}
               setCurrentView={setCurrentView}
-              user={user}
-              onUpgrade={handleUpgrade}
-            />
-          )}
-
-          {currentView === 'rights' && (
-            <RightsGuide 
-              stateData={currentStateData}
-              user={user}
-              onUpgrade={handleUpgrade}
-            />
-          )}
-
-          {currentView === 'scripts' && (
-            <ScriptsLibrary 
-              user={user}
-              onUpgrade={handleUpgrade}
-            />
-          )}
-
-          {currentView === 'record' && (
-            <IncidentRecorder 
               selectedState={selectedState}
-              onIncidentSaved={addIncident}
               user={user}
               onUpgrade={handleUpgrade}
             />
           )}
 
-          {currentView === 'history' && (
-            <IncidentHistory 
-              incidents={user.incidents}
-              user={user}
-              onUpgrade={handleUpgrade}
+          <main className="flex-1 pb-6">
+            {currentView === 'onboarding' && (
+              <StateSelector onStateSelect={handleStateSelect} />
+            )}
+
+            {currentView === 'dashboard' && (
+              <Dashboard 
+                selectedState={selectedState}
+                setCurrentView={setCurrentView}
+                user={user}
+                onUpgrade={handleUpgrade}
+              />
+            )}
+
+            {currentView === 'rights' && (
+              <RightsGuide 
+                stateData={currentStateData}
+                user={user}
+                onUpgrade={handleUpgrade}
+              />
+            )}
+
+            {currentView === 'scripts' && (
+              <ScriptsLibrary 
+                user={user}
+                onUpgrade={handleUpgrade}
+              />
+            )}
+
+            {currentView === 'record' && (
+              <IncidentRecorder 
+                selectedState={selectedState}
+                onIncidentSaved={addIncident}
+                user={user}
+                onUpgrade={handleUpgrade}
+              />
+            )}
+
+            {currentView === 'history' && (
+              <IncidentHistory 
+                incidents={user.incidents}
+                user={user}
+                onUpgrade={handleUpgrade}
+              />
+            )}
+          </main>
+
+          {showSubscriptionModal && (
+            <SubscriptionModal 
+              onClose={() => setShowSubscriptionModal(false)}
+              onSubscribe={handleSubscribe}
             />
           )}
-        </main>
-
-        {showSubscriptionModal && (
-          <SubscriptionModal 
-            onClose={() => setShowSubscriptionModal(false)}
-            onSubscribe={handleSubscribe}
-          />
-        )}
+        </div>
+        
+        {/* Toast notifications */}
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            duration: 4000,
+            style: {
+              background: isDark ? '#1f2937' : '#ffffff',
+              color: isDark ? '#f9fafb' : '#111827',
+              border: `1px solid ${isDark ? '#374151' : '#e5e7eb'}`,
+            },
+          }}
+        />
       </div>
-    </div>
+    </AuthProvider>
   )
 }
 
