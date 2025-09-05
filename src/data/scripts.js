@@ -54,5 +54,62 @@ export const scriptsData = [
     scriptText: 'Officer, I am experiencing a medical emergency and need immediate medical attention. Please call paramedics.',
     language: 'english',
     type: 'emergency'
+  },
+  // Spanish Scripts
+  {
+    scriptId: '9',
+    scenario: 'Parada de Tráfico - Contacto Inicial',
+    scriptText: 'Buenas noches, oficial. Entiendo que me detuvo. Voy a mantener mis manos visibles y seguir sus instrucciones.',
+    language: 'spanish',
+    type: 'greeting'
+  },
+  {
+    scriptId: '10',
+    scenario: 'Solicitar Razón de la Parada',
+    scriptText: 'Oficial, ¿puedo preguntar respetuosamente por qué me detuvieron hoy?',
+    language: 'spanish',
+    type: 'inquiry'
+  },
+  {
+    scriptId: '11',
+    scenario: 'Ejercer el Derecho a Permanecer en Silencio',
+    scriptText: 'Oficial, estoy ejerciendo mi derecho constitucional a permanecer en silencio. No responderé ninguna pregunta sin mi abogado presente.',
+    language: 'spanish',
+    type: 'rights'
+  },
+  {
+    scriptId: '12',
+    scenario: 'Rechazar Consentimiento para Registro',
+    scriptText: 'Oficial, no consiento ningún registro de mi persona, mi auto, o mis pertenencias. Estoy ejerciendo mis derechos de la Cuarta Enmienda.',
+    language: 'spanish',
+    type: 'rights'
+  },
+  {
+    scriptId: '13',
+    scenario: 'Notificación de Grabación',
+    scriptText: 'Oficial, estoy ejerciendo mi derecho de la Primera Enmienda a grabar esta interacción por mi seguridad y la suya.',
+    language: 'spanish',
+    type: 'notification'
+  },
+  {
+    scriptId: '14',
+    scenario: 'Solicitar Supervisor',
+    scriptText: 'Oficial, me gustaría solicitar respetuosamente que llamen a su supervisor o un oficial al mando a esta escena.',
+    language: 'spanish',
+    type: 'escalation'
+  },
+  {
+    scriptId: '15',
+    scenario: 'Desescalada Durante Tensión',
+    scriptText: 'Oficial, quiero cumplir con sus instrucciones. Por favor ayúdeme a entender qué necesita que haga para resolver esto pacíficamente.',
+    language: 'spanish',
+    type: 'de-escalation'
+  },
+  {
+    scriptId: '16',
+    scenario: 'Declaración de Emergencia Médica',
+    scriptText: 'Oficial, estoy experimentando una emergencia médica y necesito atención médica inmediata. Por favor llame a los paramédicos.',
+    language: 'spanish',
+    type: 'emergency'
   }
 ]
