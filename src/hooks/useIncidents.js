@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { supabaseService } from '../services/supabase'
 import { pinataService } from '../services/pinata'
 import { incidentCardUtils } from '../utils/incidentCard'
-import { useAuth } from './useAuth'
+import { useAuth } from './useAuth.jsx'
 import toast from 'react-hot-toast'
 import { v4 as uuidv4 } from 'uuid'
 

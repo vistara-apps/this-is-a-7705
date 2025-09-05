@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Toaster } from 'react-hot-toast'
-import { AuthProvider } from './hooks/useAuth'
+import { AuthProvider } from './hooks/useAuth.jsx'
 import { Header } from './components/Header'
 import { StateSelector } from './components/StateSelector'
 import { Dashboard } from './components/Dashboard'
